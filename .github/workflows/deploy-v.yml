@@ -19,8 +19,8 @@ jobs:
 
       - name: Configure git information
         run: |
-          git config --global user.name 'Plasmo G.A.T Deployer'
-          git config --global user.email 'support@plasmo.com'
+          git config --global user.name 'Felipe Minetto'
+          git config --global user.email 'fminetto44@gmail.com'
 
       - run: git checkout -b ${{ env.VERSION }}
       - name: Deploy ${{ env.VERSION }}
