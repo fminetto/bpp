@@ -27,29 +27,31 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          git push -fu origin ${{ env.VERSION }}
-
-  check-deployment:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ env.VERSION }}
-
-      - name: Compare the expected and actual deployed directories
-        run: |
-          if [ "$(git diff staging --ignore-space-at-eol ./ | wc -l)" -gt "0" ]; then
-            echo "Detected uncommitted changes after build.  See status below:"
-            git diff
-            exit 1
-          fi
-        id: diff
-
-      # If index.js was different than expected, upload the expected version as an artifact
-      - uses: actions/upload-artifact@v4
-        if: ${{ failure() && steps.diff.conclusion == 'failure' }}
-        with:
-          name: dist
-          path: ./
+          echo ${GITHUB_TOKEN}
+          echo ${GITHUB_REPOSITORY}
+#          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+#          git push -fu origin ${{ env.VERSION }}
+#
+#  check-deployment:
+#    needs: deploy
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          ref: ${{ env.VERSION }}
+#
+#      - name: Compare the expected and actual deployed directories
+#        run: |
+#          if [ "$(git diff staging --ignore-space-at-eol ./ | wc -l)" -gt "0" ]; then
+#            echo "Detected uncommitted changes after build.  See status below:"
+#            git diff
+#            exit 1
+#          fi
+#        id: diff
+#
+#      # If index.js was different than expected, upload the expected version as an artifact
+#      - uses: actions/upload-artifact@v4
+#        if: ${{ failure() && steps.diff.conclusion == 'failure' }}
+#        with:
+#          name: dist
+#          path: ./
