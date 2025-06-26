@@ -1,6 +1,6 @@
 [submodule "packages/bms"]
 	path = packages/bms
-	url = git@github.com:PlasmoHQ/bms.git
+	url = git@github.com:fminetto/bms.git
 [submodule "packages/edge-addons-api"]
 	path = packages/edge-addons-api
 	url = git@github.com:PlasmoHQ/edge-addons-api.git
